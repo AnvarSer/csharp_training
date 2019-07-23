@@ -61,7 +61,9 @@
   <ItemGroup>
     <Compile Include="AccountData.cs" />
     <Compile Include="Circle.cs" />
+    <Compile Include="ContactData.cs" />
     <Compile Include="CreateContact.cs" />
+    <Compile Include="driver\FindElement.cs" />
     <Compile Include="Figure.cs" />
     <Compile Include="GroupData.cs" />
     <Compile Include="Square.cs" />
