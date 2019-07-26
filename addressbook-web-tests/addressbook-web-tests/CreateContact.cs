@@ -60,7 +60,7 @@ namespace WebAddressbookTests
 
         private void SubmitContactCreation()
         {
-            driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]")).Click();
+            driver.FindElement(By.Name("submit")).Click();
         }
 
         private void FillContactForm(ContactData contact)
