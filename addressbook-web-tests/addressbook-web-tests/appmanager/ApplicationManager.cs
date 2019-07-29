@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts.Internal;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace WebAddressbookTests
         protected LoginHelper loginHelper;
         protected NavigationHelper navigator;
         protected GroupHelper groupHelper;
+        protected ContactHelper contactHelper;
 
         public ApplicationManager()
         {
@@ -71,5 +73,14 @@ namespace WebAddressbookTests
                 return groupHelper;
             }
         }
+
+        public ContactHelper Contacts
+        {
+            get
+            {
+                return contactHelper;
+            }
+        }
     }
+
 }
