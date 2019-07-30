@@ -45,7 +45,7 @@ namespace WebAddressbookTests
 
         public ContactHelper AddNewContact()
         {
-            driver.FindElement(By.LinkText("add new")).Click();
+            driver.FindElement(By.Name("add new")).Click();
             return this;
         }
     }
