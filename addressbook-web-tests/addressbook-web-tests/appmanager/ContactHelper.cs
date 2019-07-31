@@ -48,5 +48,41 @@ namespace WebAddressbookTests
             driver.FindElement(By.XPath("//*[@id='nav']/ul/li[2]/a")).Click();
             return this;
         }
+
+        public ContactHelper Remove(int p)
+        {
+            manager.Navigator.GoToContactsPage();
+            SelectContact(p);
+            RemoveContact();
+            ReturnToContactsPage();
+            return this;
+        }
+
+        private ContactHelper ReturnToContactsPage()
+        {
+            driver.FindElement(By.LinkText("home")).Click();
+            return this;
+        }
+
+        private ContactHelper RemoveContact()
+        {
+            driver.FindElement(By.XPath("//*[@id='content']/form[2]/div[2]/input")).Click();
+            driver.SwitchTo().Alert();
+            return this;
+        }
+
+        private ContactHelper SelectContact(int index)
+        {
+            //driver.FindElement(By.XPath("/html[1]/body[1]/div[1]/div[4]/form[2]/table[1]/tbody[1]/tr[2]/td[1]/input[1]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            return this;
+        }
     }
 }
+
+
+
+
+
+
+
