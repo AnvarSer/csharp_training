@@ -67,7 +67,7 @@ namespace WebAddressbookTests
         private ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//*[@id='content']/form[2]/div[2]/input")).Click();
-            driver.SwitchTo().Alert();
+            driver.SwitchTo().Alert().Accept();
             return this;
         }
 
