@@ -58,23 +58,66 @@ namespace WebAddressbookTests
             return this;
         }
 
-        private ContactHelper ReturnToContactsPage()
+        public ContactHelper ReturnToContactsPage()
         {
             driver.FindElement(By.LinkText("home")).Click();
             return this;
         }
 
-        private ContactHelper RemoveContact()
+        public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//*[@id='content']/form[2]/div[2]/input")).Click();
             driver.SwitchTo().Alert().Accept();
             return this;
         }
 
-        private ContactHelper SelectContact(int index)
+        public ContactHelper SelectContact(int index)
         {
-            //driver.FindElement(By.XPath("/html[1]/body[1]/div[1]/div[4]/form[2]/table[1]/tbody[1]/tr[2]/td[1]/input[1]")).Click();
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            return this;
+        }
+
+        public ContactHelper Modify(int p, ContactData newData)
+        {
+            manager.Navigator.GoToContactsPage();
+            ClickEditContact();
+            ModifyFirstName(newData);
+            ModifyLastName(newData);
+            UpdateContactModification();
+            ReturnToHomePage();
+            return this;
+        }
+
+        public ContactHelper ReturnToHomePage()
+        {
+            driver.FindElement(By.LinkText("home page")).Click();
+            return this;
+        }
+
+        public ContactHelper UpdateContactModification()
+        {
+            driver.FindElement(By.Name("Update")).Click();
+            return this;
+        }
+
+
+        public ContactHelper ModifyLastName(ContactData contact)
+        {
+            driver.FindElement(By.Name("lastname")).Clear();
+            driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
+            return this;
+        }
+
+        public ContactHelper ModifyFirstName(ContactData contact)
+        {
+            driver.FindElement(By.Name("firstname")).Clear();
+            driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);
+            return this;
+        }
+
+        public ContactHelper ClickEditContact()
+        {
+            driver.FindElement(By.XPath("(.//*[@id='maintable']/tbody/tr[2]/td[8]/a/img")).Click();
             return this;
         }
     }
