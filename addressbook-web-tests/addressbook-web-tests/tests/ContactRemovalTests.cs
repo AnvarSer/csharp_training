@@ -9,11 +9,12 @@ namespace WebAddressbookTests
     [TestFixture]
     public class ContactRemovalTests : TestBase
     {
+        private object newData;
 
         [Test]
         public void ContactRemovalTest()
         {
-            app.Contacts.Modify(1);
+            app.Contacts.Remove(1, newData);
         }
     }
 }

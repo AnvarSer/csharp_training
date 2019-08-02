@@ -15,6 +15,7 @@ namespace WebAddressbookTests
         public ContactData(string name)
         {
             this.name = name;
+            
         }
 
         public string Name
@@ -27,12 +28,6 @@ namespace WebAddressbookTests
             {
                 name = value;
             }
-        }
-
-        public ContactData(string firstname, string lastname)
-        {
-            this.firstname = firstname;
-            this.lastname = lastname;
         }
 
         public string Firstname
