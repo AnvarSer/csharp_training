@@ -8,13 +8,25 @@ namespace WebAddressbookTests
 {
     public class ContactData
     {
+        private string name;
         private string firstname = "";
         private string lastname = "";
-        private string name;
 
         public ContactData(string name)
         {
             this.name = name;
+        }
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
         }
 
         public ContactData(string firstname, string lastname)

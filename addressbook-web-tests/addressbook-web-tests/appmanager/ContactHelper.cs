@@ -80,7 +80,7 @@ namespace WebAddressbookTests
         public ContactHelper Modify(int p, ContactData newData)
         {
             manager.Navigator.GoToContactsPage();
-            ClickEditContact();
+            ClickEditContact(p);
             ModifyFirstName(newData);
             ModifyLastName(newData);
             UpdateContactModification();
