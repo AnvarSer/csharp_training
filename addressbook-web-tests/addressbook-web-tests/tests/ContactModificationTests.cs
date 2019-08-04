@@ -18,7 +18,7 @@ namespace WebAddressbookTests
             newData.Firstname = "Ninja";
             newData.Lastname = "Gaiden";
 
-            app.Contacts.Modify(1, newData);
+            app.Contacts.Modify(newData);
         }
     }
 }

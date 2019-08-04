@@ -16,7 +16,7 @@ namespace WebAddressbookTests
         {
         }
 
-        internal void Remove(int v, object newData)
+        internal void Remove(object newData)
         {
             throw new NotImplementedException();
         }
@@ -37,7 +37,23 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper FillContactForm(ContactData contact)
+        public ContactHelper AddNewContact()
+        {
+            driver.FindElement(By.XPath("//*[@id='nav']/ul/li[2]/a")).Click();
+            return this;
+        }
+
+        public ContactHelper Modify(ContactData newData)
+        {
+            manager.Navigator.GoToContactsPage();
+            ClickEditContact();
+            FillContactForm(newData);
+            UpdateContactModification();
+            ReturnToHomePage();
+            return this;
+        }
+
+        private ContactHelper FillContactForm(ContactData contact)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
@@ -45,23 +61,6 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("lastname")).Click();
             driver.FindElement(By.Name("lastname")).Clear();
             driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
-            return this;
-        }
-
-        public ContactHelper AddNewContact()
-        {
-            driver.FindElement(By.XPath("//*[@id='nav']/ul/li[2]/a")).Click();
-            return this;
-        }
-
-        public ContactHelper Modify(int v, ContactData newData)
-        {
-            manager.Navigator.GoToContactsPage();
-            ClickEditContact();
-            ModifyFirstName(newData);
-            ModifyLastName(newData);
-            UpdateContactModification();
-            ReturnToHomePage();
             return this;
         }
 
@@ -96,9 +95,6 @@ namespace WebAddressbookTests
             driver.FindElement(By.XPath("//*[@id='maintable']/tbody/tr[2]/td[8]/a/img")).Click();
             return this;
         }
-
-
-
 
         public ContactHelper Remove(int p)
         {
