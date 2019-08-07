@@ -20,7 +20,7 @@ namespace WebAddressbookTests
         }
         public void GoToHomePage()
         {
-            if (driver.Url == baseURL + "/addresbook/")
+            if (driver.Url == baseURL + "/addressbook/")
             {
                 return;
             }

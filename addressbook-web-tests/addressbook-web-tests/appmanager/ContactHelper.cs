@@ -74,15 +74,22 @@ namespace WebAddressbookTests
 
         public ContactHelper ModifyLastName(ContactData contact)
         {
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
+            TypeContact(By.Name("lastname"), contact.Lastname);
             return this;
+        }
+
+        public void TypeContact(By locator, string text)
+        {
+            if (text != null)
+            {
+                driver.FindElement(locator).Clear();
+                driver.FindElement(locator).SendKeys(text);
+            }
         }
 
         public ContactHelper ModifyFirstName(ContactData contact)
         {
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);
+            TypeContact(By.Name("firstname"), contact.Firstname);
             return this;
         }
 
