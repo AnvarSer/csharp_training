@@ -20,5 +20,12 @@ namespace WebAddressbookTests
 
             app.Contacts.Modify(newData);
         }
+
+        [Test]
+        public void ContactModifyOrCreateElement()
+        {
+            // prepare
+
+        }
     }
 }

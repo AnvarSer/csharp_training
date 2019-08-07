@@ -16,11 +16,6 @@ namespace WebAddressbookTests
         {
         }
 
-        internal void Remove(object newData)
-        {
-            throw new NotImplementedException();
-        }
-
         public ContactHelper Create(ContactData contact)
         {
             manager.Navigator.GoToContactsPage();
@@ -107,9 +102,19 @@ namespace WebAddressbookTests
 
         public ContactHelper RemoveContact()
         {
+            if (ContactIsPresent())
+            {
+
+            }
+
             driver.FindElement(By.XPath("//*[@id='content']/form[2]/div[2]/input")).Click();
             driver.SwitchTo().Alert().Accept();
             return this;
+        }
+
+        public bool ContactIsPresent()
+        {
+            return IsElementPresent(By.Name("entry"));    
         }
 
         public ContactHelper SelectContact(int index)

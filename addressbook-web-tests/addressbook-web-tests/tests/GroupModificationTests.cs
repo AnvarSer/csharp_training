@@ -19,5 +19,11 @@ namespace WebAddressbookTests
 
             app.Groups.Modify(1, newData);
         }
+
+        [Test]
+        public void GroupModifyOrCreateElement()
+        {
+
+        }
     }
 }
