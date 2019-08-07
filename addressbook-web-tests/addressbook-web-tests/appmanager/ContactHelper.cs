@@ -55,8 +55,8 @@ namespace WebAddressbookTests
 
         private ContactHelper FillContactForm(ContactData contact)
         {
-            Type(By.Name("firstname"), contact.Firstname);
-            Type(By.Name("lastname"), contact.Lastname);
+            base.Type(By.Name("firstname"), contact.Firstname);
+            base.Type(By.Name("lastname"), contact.Lastname);
             return this;
         }
 
@@ -74,22 +74,13 @@ namespace WebAddressbookTests
 
         public ContactHelper ModifyLastName(ContactData contact)
         {
-            TypeContact(By.Name("lastname"), contact.Lastname);
+            Type(By.Name("lastname"), contact.Lastname);
             return this;
-        }
-
-        public void TypeContact(By locator, string text)
-        {
-            if (text != null)
-            {
-                driver.FindElement(locator).Clear();
-                driver.FindElement(locator).SendKeys(text);
-            }
         }
 
         public ContactHelper ModifyFirstName(ContactData contact)
         {
-            TypeContact(By.Name("firstname"), contact.Firstname);
+            Type(By.Name("firstname"), contact.Firstname);
             return this;
         }
 
