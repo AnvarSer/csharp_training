@@ -44,6 +44,7 @@ namespace WebAddressbookTests
         {
             return IsElementPresent(By.Name("logout"));
         }
+
         public bool IsLoggedIn(AccountData account)
         {
             return IsLoggedIn()
