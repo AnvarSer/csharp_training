@@ -104,14 +104,18 @@ namespace WebAddressbookTests
         {
             if (ContactIsPresent())
             {
-                driver.FindElement(By.XPath("//*[@id='content']/form[2]/div[2]/input")).Click();
-                driver.SwitchTo().Alert().Accept();
+                return this;
             }
             else
             {
-                manager.ContactHelper.Create();
+                //manager.ContactHelper.Create();
+                AddNewContact();
+                FillContactForm(contact);
+                SubmitContactCreation();
             }
 
+            driver.FindElement(By.XPath("//*[@id='content']/form[2]/div[2]/input")).Click();
+            driver.SwitchTo().Alert().Accept();
             return this;
         }
 
