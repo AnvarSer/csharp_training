@@ -97,6 +97,8 @@ namespace WebAddressbookTests
                 return contactHelper;
             }
         }
+
+        public object ContactHelper { get; internal set; }
     }
 
 }

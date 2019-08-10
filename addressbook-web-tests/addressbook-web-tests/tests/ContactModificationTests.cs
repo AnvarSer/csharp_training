@@ -10,10 +10,20 @@ namespace WebAddressbookTests
     [TestFixture]
     public class ContactModificationTests : AuthTestBase
     {
-
         [Test]
         public void ContactModificationTest()
         {
+            //Assert.IsElementPresent(app.ContactHelper.!ContactIsPresent);
+            if (!ContactIsPresent())
+            {
+                manager.ContactHelper.Create();
+            }
+
+            public bool ContactIsPresent()
+            {
+                return IsElementPresent(By.Name("entry"));
+            }
+
             ContactData newData = new ContactData("");
             newData.Firstname = "Ninja";
             newData.Lastname = "Gaiden";
@@ -21,11 +31,6 @@ namespace WebAddressbookTests
             app.Contacts.Modify(newData);
         }
 
-        [Test]
-        public void ContactModifyOrCreateElement()
-        {
-            // prepare
 
-        }
     }
 }

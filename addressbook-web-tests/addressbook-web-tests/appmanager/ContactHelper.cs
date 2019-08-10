@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
 
 namespace WebAddressbookTests
 {
@@ -48,7 +41,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        private ContactHelper FillContactForm(ContactData contact)
+        public ContactHelper FillContactForm(ContactData contact)
         {
             base.Type(By.Name("firstname"), contact.Firstname);
             base.Type(By.Name("lastname"), contact.Lastname);
@@ -89,7 +82,7 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToContactsPage();
             SelectContact(p);
-            RemoveContact();
+            //RemoveContact();
             ReturnToContactsPage();
             return this;
         }
@@ -102,27 +95,20 @@ namespace WebAddressbookTests
 
         public ContactHelper RemoveContact()
         {
-            if (ContactIsPresent())
-            {
-                return this;
-            }
-            else
-            {
+            //if (!ContactIsPresent())
+            //{
                 //manager.ContactHelper.Create();
-                AddNewContact();
-                FillContactForm(contact);
-                SubmitContactCreation();
-            }
+            //}
 
             driver.FindElement(By.XPath("//*[@id='content']/form[2]/div[2]/input")).Click();
             driver.SwitchTo().Alert().Accept();
             return this;
         }
 
-        public bool ContactIsPresent()
-        {
-            return IsElementPresent(By.Name("entry"));    
-        }
+        //public bool ContactIsPresent()
+        //{
+            //return IsElementPresent(By.Name("entry"));
+        //}
 
         public ContactHelper SelectContact(int index)
         {
