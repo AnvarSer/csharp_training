@@ -95,20 +95,20 @@ namespace WebAddressbookTests
 
         public ContactHelper RemoveContact()
         {
-            //if (!ContactIsPresent())
-            //{
-                //manager.ContactHelper.Create();
-            //}
+            if (!ContactIsPresent())
+            {
+                manager.ContactHelper.Create();
+            }
 
             driver.FindElement(By.XPath("//*[@id='content']/form[2]/div[2]/input")).Click();
             driver.SwitchTo().Alert().Accept();
             return this;
         }
 
-        //public bool ContactIsPresent()
-        //{
-            //return IsElementPresent(By.Name("entry"));
-        //}
+        public bool ContactIsPresent()
+        {
+            return IsElementPresent(By.Name("entry"));
+        }
 
         public ContactHelper SelectContact(int index)
         {

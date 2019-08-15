@@ -18,22 +18,25 @@ namespace WebAddressbookTests
             newData.Footer = null;
 
             List<GroupData> oldgroups = app.Groups.GetGroupList();
+//            GroupData oldData = oldGroups[0];
 
             app.Groups.Modify(0, newData);
 
-            //Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount());
+//            Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount());
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
             oldgroups[0].Name = newData.Name;
-            //oldGroups.Sort();
+//            oldGroups.Sort();
             newGroups.Sort();
-            //Assert.AreEqual(oldGroups, newGroups);
+//            Assert.AreEqual(oldGroups, newGroups);
 
-        }
-
-        [Test]
-        public void GroupModifyOrCreateElement()
-        {
+            foreach (GroupData group in newGroups)
+            {
+//                if (group.Id == oldData.Id)
+                {
+                    Assert.AreEqual(newData.Name, group.Name);
+                }
+            }
 
         }
     }
