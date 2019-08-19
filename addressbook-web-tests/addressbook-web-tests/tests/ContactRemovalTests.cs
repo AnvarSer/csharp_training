@@ -18,7 +18,7 @@ namespace WebAddressbookTests
         [Test]
         public void ContactRemoveOrCreateElement()
         {
-            Assert.IsTrue(app.Contacts.ContactIsPresent());
+            //Assert.IsTrue(app.Contacts.ContactIsPresent());
             app.Contacts.Remove(1);
 
         }

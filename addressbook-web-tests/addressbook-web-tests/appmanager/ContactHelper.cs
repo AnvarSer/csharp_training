@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 
 namespace WebAddressbookTests
 {
@@ -17,6 +18,39 @@ namespace WebAddressbookTests
             FillContactForm(contact);
             SubmitContactCreation();
             return this;
+        }
+
+        public ContactData GetContactInformationFromTable(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ContactData GetContactInformationFromEditForm(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactModification(0);
+
+            string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string address = driver.FindElement(By.Name("address")).GetAttribute("value");
+
+            string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
+            string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
+            string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+
+            return new ContactData(firstName, lastName)
+            {
+
+            };
+
+
+        }
+
+        public void InitContactModification(int index)
+        {
+            driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[7]
+                .FindElement(By.TagName("a")).Click();
         }
 
         public ContactHelper SubmitContactCreation()
@@ -93,22 +127,22 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper RemoveContact()
+        public ContactHelper RemoveContact(int index)
         {
-            if (!ContactIsPresent())
-            {
-                manager.ContactHelper.Create();
-            }
+            //if (!ContactIsPresent())
+            //{
+                //manager.ContactHelper.Create();
+            //}
 
             driver.FindElement(By.XPath("//*[@id='content']/form[2]/div[2]/input")).Click();
             driver.SwitchTo().Alert().Accept();
             return this;
         }
 
-        public bool ContactIsPresent()
-        {
-            return IsElementPresent(By.Name("entry"));
-        }
+        //public bool ContactIsPresent()
+        //{
+            //return IsElementPresent(By.Name("entry"));
+        //}
 
         public ContactHelper SelectContact(int index)
         {
