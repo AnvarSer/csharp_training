@@ -16,12 +16,14 @@ namespace WebAddressbookTests
             //Assert.IsElementPresent(app.ContactHelper.!ContactIsPresent);
             //if (!ContactIsPresent())
             //{
-                //manager.ContactHelper.Create();
+            //manager.ContactHelper.Create();
             //}
 
-            ContactData newData = new ContactData("");
-            newData.Firstname = "Ninja";
-            newData.Lastname = "Gaiden";
+            ContactData newData = new ContactData("")
+            {
+                Firstname = "Ninja",
+                Lastname = "Gaiden"
+            };
 
             app.Contacts.Modify(newData);
         }

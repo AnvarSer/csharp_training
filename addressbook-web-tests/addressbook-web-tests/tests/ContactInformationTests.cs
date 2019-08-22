@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using WebAddressbookTests;
 
-namespace addressbook_web_tests.tests
+namespace WebAddressbookTests
 {
     [TestFixture]
     public class ContactInformationTests: AuthTestBase
@@ -18,6 +18,9 @@ namespace addressbook_web_tests.tests
             ContactData fromForm = app.Contacts.GetContactInformationFromEditForm(0);
 
             // verification
+            Assert.AreEqual(fromTable, fromForm);
+            Assert.AreEqual(fromTable.Address, fromForm.Address);
+            Assert.AreEqual(fromTable.AllPhones, fromForm.AllPhones);
         }
     }
 }

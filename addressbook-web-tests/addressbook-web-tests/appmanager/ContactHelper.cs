@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using OpenQA.Selenium;
+using System.Text.RegularExpressions;
 
 namespace WebAddressbookTests
 {
@@ -22,7 +24,20 @@ namespace WebAddressbookTests
 
         public ContactData GetContactInformationFromTable(int index)
         {
-            throw new NotImplementedException();
+            manager.Navigator.GoToHomePage();
+            IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"));
+            string lastName = cells[1].Text;
+            string firstName = cells[2].Text;
+            string address = cells[3].Text;
+            string allPhones = cells[5].Text;
+
+            return new ContactData(firstName, lastName)
+            {
+                Address = address,
+                AllPhones = allPhones,
+            };
+
         }
 
         public ContactData GetContactInformationFromEditForm(int index)
@@ -40,10 +55,11 @@ namespace WebAddressbookTests
 
             return new ContactData(firstName, lastName)
             {
-
+                Address = address,
+                HomePhone = homePhone,
+                MobilePhone = mobilePhone,
+                WorkPhone = workPhone
             };
-
-
         }
 
         public void InitContactModification(int index)
@@ -52,6 +68,18 @@ namespace WebAddressbookTests
                 .FindElements(By.TagName("td"))[7]
                 .FindElement(By.TagName("a")).Click();
         }
+
+
+        public int GetNumberOfSearchResults()
+        {
+            manager.Navigator.GoToHomePage();
+            string text = driver.FindElement(By.TagName("label")).Text;
+            Match m = new Regex(@"\d+").Match(text);
+            return Int32.Parse(m.Value);
+        }
+
+
+
 
         public ContactHelper SubmitContactCreation()
         {

@@ -3,55 +3,68 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace WebAddressbookTests
 {
     public class ContactData
     {
-        private string name;
-        private string firstname = "";
-        private string lastname = "";
+        private string allPhones;
+        private string v;
 
-        public ContactData(string name)
+        public ContactData()
         {
-            this.name = name;
-            
         }
 
-        public string Name
+        public ContactData(string v)
         {
-            get
-            {
-                return name;
+            this.v = v;
+        }
+
+        public ContactData(string firstName, string lastName)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+        }
+
+        public string FirstName { get; }
+        public string LastName { get; }
+        public string Firstname {get; set;}
+        public string Lastname { get; set; }
+
+        public string Address { get; set; }
+
+        public string HomePhone { get; set; }
+
+        public string MobilePhone { get; set; }
+
+        public string WorkPhone { get; set; }
+
+        public string AllPhones
+        {
+            get {
+                if (allPhones != null)
+                {
+                    return allPhones;
+                }
+                else
+                {
+                    return (CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)).Trim();
+                }
             }
-            set
-            {
-                name = value;
+            set {
+                allPhones = value;
             }
         }
 
-        public string Firstname
+        private string CleanUp(string phone)
         {
-            get
+            if (phone == null || phone == "")
             {
-                return firstname;
+                return "";
             }
-            set
-            {
-                firstname = value;
-            }
-        }
-
-        public string Lastname
-        {
-            get
-            {
-                return lastname;
-            }
-            set
-            {
-                lastname = value;
-            }
+            //return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            return Regex.Replace(phone, "[ -()]", "") + "\r\n";
         }
     }
 }
