@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace WebAddressbookTests
 {
+    [Table]
     public class ContactData
     {
         private string allPhones;
@@ -20,6 +21,13 @@ namespace WebAddressbookTests
         {
             this.v = v;
         }
+
+
+        public ContactData()
+        {
+
+        }
+
 
         public ContactData(string firstName, string lastName)
         {
