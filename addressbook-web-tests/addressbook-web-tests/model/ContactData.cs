@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using LinqToDB.Mapping;
 
 namespace WebAddressbookTests
 {
-    [Table]
+    [Table(Name = "addressbook")]
     public class ContactData
     {
         private string allPhones;
@@ -22,20 +23,19 @@ namespace WebAddressbookTests
             this.v = v;
         }
 
-
-        public ContactData()
-        {
-
-        }
-
-
         public ContactData(string firstName, string lastName)
         {
             FirstName = firstName;
             LastName = lastName;
         }
 
+        [Column(Name = "id"), PrimaryKey]
+        public string Id { get; }
+
+        [Column(Name= "firstname")]
         public string FirstName { get; }
+
+        [Column(Name = "lastname")]
         public string LastName { get; }
         public string Firstname {get; set;}
         public string Lastname { get; set; }
