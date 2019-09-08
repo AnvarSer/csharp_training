@@ -48,6 +48,10 @@ namespace WebAddressbookTests
 
         public string WorkPhone { get; set; }
 
+        public string Deprecated { get; set; }
+
+        [Column(Name = "deprecated")]
+
         public string AllPhones
         {
             get {
@@ -73,6 +77,13 @@ namespace WebAddressbookTests
             }
             //return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
             return Regex.Replace(phone, "[ -()]", "") + "\r\n";
+        }
+        public static List<ContactData> GetAll()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from c in db.Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00") select c).ToList();
+            }
         }
     }
 }
